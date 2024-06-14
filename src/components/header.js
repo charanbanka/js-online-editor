@@ -2,6 +2,7 @@ class Header {
   constructor(element) {
     this.element = element;
   }
+  componentMounted() {}
   render() {
     let h = `
         <div class="header-container>
@@ -19,6 +20,7 @@ class Header {
         `;
 
     document.querySelector(this.element).innerHTML = h;
+    this.componentMounted();
     return this;
   }
 }
