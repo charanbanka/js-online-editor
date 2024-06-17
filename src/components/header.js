@@ -1,28 +1,43 @@
-class Header {
-  constructor(element) {
-    this.element = element;
+// import eventEmitter from "../utils/event-emitter.js";
+
+export default class Header {
+  // el-> HTML DOM where the header will be mounted
+  constructor(el) {
+    this.el = el;
   }
-  componentMounted() {}
+
+  // afterRender
+  componentMounted() {
+    document.querySelector("#btnExecuteCode").addEventListener("click", (e) => {
+      // eventEmitter.emit("execute-code");
+      alert("code executed");
+    });
+
+    document.querySelector("#btnSave").addEventListener("click", (e) => {
+      // eventEmitter.emit('save-code');
+      alert("code saved");
+    });
+  }
+
   render() {
     let h = `
-        <div class="header-container>
-            <div>
-                <h3 class="">
-                <a data-route href="/#/">Js Editor </a>
-                </h3>
-            </div>
-            <div>
-                <button>
-                <a data-route href="/new">+ </a>
-                </button>
-            </div>
-        </div>
-        `;
+      <div class="crud-buttons">
+        <h4 class="logo"><a  data-route href="/#/">PlayGround</a></h4>
+        <span id="pageTitle"></span>
+        <button id="btnNew" title="New Code Block"  class="button secondary noborder">
+          <a data-route href="#/new">+</a>
+        </button>
+        <button id="btnSave" title="Save Code Block"  class="button secondary noborder">
+          🖫
+        </button>
+        <button id="btnExecuteCode" title="Execute Code Block"  class="button action noborder">
+           ▷
+        </button>
+      </div>
+    `;
 
-    document.querySelector(this.element).innerHTML = h;
+    document.querySelector(this.el).innerHTML = h;
     this.componentMounted();
     return this;
   }
 }
-
-export default Header;
